@@ -3,7 +3,6 @@ from pymongo import MongoClient
 import os
 
 mongo_uri = os.environ.get("MONGO_URI")
-print("Connecting to MongoDB using URI:", os.environ.get("MONGO_URI"))
 
 app = Flask(__name__, template_folder='/app/templates')
 

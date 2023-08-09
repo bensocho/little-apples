@@ -3,9 +3,6 @@ services:
   mongodb:
     build:
       context: ./db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password
     ports:
       - "27017:27017"
     volumes:
@@ -30,3 +27,4 @@ networks:
 
 volumes:
   mongodb_data:
+

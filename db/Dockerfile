@@ -8,3 +8,4 @@ COPY init-data.js /docker-entrypoint-initdb.d/
 
 # Command to start MongoDB
 CMD ["mongod"]
+
