@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mongodb:
+    build:
+      context: ./db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - mynetwork
+  
+  flaskapp:
+    build:
+      context: ./app
+    environment:
+      MONGO_URI: mongodb://admin:password@mongodb:27017/my_flask_db
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
+volumes:
+  mongodb_data:
