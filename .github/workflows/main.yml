@@ -1,5 +1,6 @@
 name: CI Pipeline
 
+# workflow will trigger when pushin or merging into master
 on:
   push:
     branches: [master]
