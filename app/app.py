@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from pymongo import MongoClient
 import os
 
+# sets the mongo URI from the envronment variable
 mongo_uri = os.environ.get("MONGO_URI")
 
 app = Flask(__name__, template_folder='/app/templates')
@@ -21,6 +22,7 @@ def apples():
         apples_qty = "N/A"
     
     return render_template('index.html', apples_qty=apples_qty)
-    
+
+# running the app    
 app.run(host="0.0.0.0")
 
