@@ -11,9 +11,8 @@ if (adminUser == null) {
 }
 
 db = conn.getDB("my_flask_db")
-var coll = db.getCollection(fruits)
-
-if (coll.length == 0) {
+var collectionNames = db.getCollectionNames();
+if (!collectionNames.includes("fruits")) {
   db.createCollection("fruits");
   db.fruits.insertMany([
     { "_id": 1, "name": "apples", "qty": 5, "rating": 3 },
