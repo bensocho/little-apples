@@ -1,7 +1,10 @@
 var conn = new Mongo();
-var db = conn.getDB("admin");
+db = new Mongo().getDB("admin");
 
 var adminUser = db.system.users.findOne({ user: "admin" });
+
+db = new Mongo().getDB("my_flask_db");
+
 if (adminUser == null) {
   db.createUser({
     user: "admin",
@@ -10,7 +13,6 @@ if (adminUser == null) {
   });
 }
 
-db = conn.getDB("my_flask_db")
 var collectionNames = db.getCollectionNames();
 if (!collectionNames.includes("fruits")) {
   db.createCollection("fruits");
