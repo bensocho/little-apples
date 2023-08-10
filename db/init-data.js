@@ -2,7 +2,7 @@ var conn = new Mongo();
 var db = conn.getDB("admin");
 
 var adminUser = db.system.users.findOne({ user: "admin" });
-if (!adminUser) {
+if (adminUser == null) {
   db.createUser({
     user: "admin",
     pwd: "password",
