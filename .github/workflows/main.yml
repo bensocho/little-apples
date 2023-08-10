@@ -33,6 +33,12 @@ jobs:
             echo "Local test failed with response code: $response_code"
             exit 1
           fi
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2.2.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+
 
       - name: Build and Push MongoDB Image
         uses: docker/build-push-action@v2
@@ -41,8 +47,6 @@ jobs:
           file: ./db/Dockerfile
           push: true
           tags: docker.io/bensocho1312/bens-repo:mongodb-${{ steps.commit_sha.outputs.sha }}
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and Push Python App Image
         uses: docker/build-push-action@v2
@@ -51,7 +55,5 @@ jobs:
           file: ./app/Dockerfile
           push: true
           tags: docker.io/bensocho1312/bens-repo:python-app-${{ steps.commit_sha.outputs.sha }}
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
 
