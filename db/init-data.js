@@ -1,7 +1,7 @@
 var conn = new Mongo();
 var db = conn.getDB("my_flask_db");
 
-var adminUser = db.getUsers({ user: "admin" });
+var adminUser = db.getUsers("admin");
 if (adminUser.length === 0) {
   db.createUser({
     user: "admin",
