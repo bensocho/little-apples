@@ -42,9 +42,8 @@ jobs:
           file: ./db/Dockerfile
           push: true
           tags: docker.io/bensocho1312/bens-repo:mongodb-${{ steps.commit_sha.outputs.sha }}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Build and Push Python App Image
         uses: docker/build-push-action@v2
@@ -53,8 +52,7 @@ jobs:
           file: ./app/Dockerfile
           push: true
           tags: docker.io/bensocho1312/bens-repo:python-app-${{ steps.commit_sha.outputs.sha }}
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
 
