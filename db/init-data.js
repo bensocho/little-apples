@@ -1,8 +1,8 @@
 var conn = new Mongo();
-var db = conn.getDB("my_flask_db");
+var db = conn.getDB("admin");
 
-var adminUser = db.getUsers("admin");
-if (adminUser.length === 0) {
+var adminUser = db.system.users.findOne({ user: "admin" });
+if (!adminUser) {
   db.createUser({
     user: "admin",
     pwd: "password",
@@ -10,7 +10,9 @@ if (adminUser.length === 0) {
   });
 }
 
+db = conn.getDB("my_flask_db")
 var coll = db.getCollection(fruits)
+
 if (coll.length == 0) {
   db.createCollection("fruits");
   db.fruits.insertMany([
