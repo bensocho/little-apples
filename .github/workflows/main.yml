@@ -26,7 +26,7 @@ jobs:
           sleep 10
 
           # Test if the app is running by making a request to localhost:5000
-          response_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:5000)
+          response_code=$(curl -s -o /dev/null -w "%{http_code}" http://localhost:80)
 
           # Exit if response code is not 200
           if [ $response_code -ne 200 ]; then
