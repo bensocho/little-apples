@@ -6,8 +6,19 @@ import os
 mongo_uri = os.environ.get("MONGO_URI")
 
 app = Flask(__name__, template_folder='/app/templates')
+client = None
+def connect_to_mongo():
+    while client == None:
+        try:
+            client = MongoClient(mongo_uri)
+            # If connection is successful, break out of the loop
+            return client
+        except Exception as e:
+            print(f"Error connecting to MongoDB: {e}")
+            # Retry after a delay
+            time.sleep(5)
 
-client = MongoClient(mongo_uri)
+client = connect_to_mongo()
 db = client.my_flask_db
 fruits_collection = db.fruits
 
