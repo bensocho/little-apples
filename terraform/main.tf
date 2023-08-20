@@ -52,7 +52,7 @@ resource "aws_ecs_task_definition" "little-apples-task" {
       environment = [
         {
           name  = "MONGO_URI",
-          value = "mongodb://admin:password@mongodb:27017/my_flask_db"
+          value = "mongodb://admin:password@localhost:27017/my_flask_db"
         }
       ],
       portMappings = [
