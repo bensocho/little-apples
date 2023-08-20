@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 from pymongo import MongoClient
 import os
+import time
 
 # sets the mongo URI from the envronment variable
 mongo_uri = os.environ.get("MONGO_URI")
@@ -8,6 +9,16 @@ mongo_uri = os.environ.get("MONGO_URI")
 app = Flask(__name__, template_folder='/app/templates')
 
 client = MongoClient(mongo_uri)
+def connect_to_mongo():
+    while client == None:
+        try:
+            client = MongoClient(mongo_uri)
+            return client
+        except Exception as e:
+            print(f"Error connecting to MongoDB: {e}")
+            # Retry after a delay
+            time.sleep(5)
+
 db = client.my_flask_db
 fruits_collection = db.fruits
 
