@@ -18,7 +18,7 @@ def connect_to_mongo():
             print(f"Error connecting to MongoDB: {e}")
             # Retry after a delay
             time.sleep(5)
-
+connect_to_mongo
 db = client.my_flask_db
 fruits_collection = db.fruits
 
