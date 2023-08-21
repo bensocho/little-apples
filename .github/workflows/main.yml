@@ -3,15 +3,9 @@ name: CI Pipeline
 on:
   push:
     branches: [master]
-    paths:
-    -  'app/**'
-    -  'db/**'
-    
   pull_request:
     branches: [master]
-    paths:
-    -  'app/**'
-    -  'db/**'
+
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
@@ -62,5 +56,4 @@ jobs:
           file: ./app/Dockerfile
           push: true
           tags: docker.io/bensocho1312/bens-repo:python-app-${{ steps.commit_sha.outputs.sha }}
-
 
